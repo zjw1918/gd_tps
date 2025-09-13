@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://be2suxmsx2wnp"]
+
+[ext_resource type="PackedScene" uid="uid://b86gag0x4bbyo" path="res://scenes/player/player.tscn" id="1_dphjl"]
+[ext_resource type="Texture2D" uid="uid://xbjd1ipn5caf" path="res://Assets/kenney_prototype-textures/dark_square.tres" id="1_sl2e5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e5uuo"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_nnsk1"]
+sky_material = SubResource("ProceduralSkyMaterial_e5uuo")
+
+[sub_resource type="Environment" id="Environment_rwgxs"]
+background_mode = 2
+sky = SubResource("Sky_nnsk1")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1fp7r"]
+albedo_texture = ExtResource("1_sl2e5")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6m72w"]
+albedo_texture = ExtResource("1_sl2e5")
+uv1_triplanar = true
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rwgxs")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.07403, 0)
+size = Vector3(30, 6.36127, 30)
+material = SubResource("StandardMaterial3D_1fp7r")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.1, 0)
+operation = 2
+size = Vector3(29, 10, 29)
+material = SubResource("StandardMaterial3D_6m72w")
+
+[node name="Player" parent="." instance=ExtResource("1_dphjl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.73306, 0)
