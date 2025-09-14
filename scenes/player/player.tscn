@@ -29,6 +29,7 @@ mesh = SubResource("CapsuleMesh_71j4m")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.590153, 0)
 script = ExtResource("2_g2els")
 character = NodePath("..")
+swap_cam_duration = 0.2
 
 [node name="EdgeSpringArm" type="SpringArm3D" parent="Camera"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
